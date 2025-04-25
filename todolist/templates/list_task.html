@@ -14,12 +14,14 @@
 
 {% block content %}
   <h1>Your Tasks</h1>
-  <ul class="list-group mb-3">
+  <div class="border border-1 rounded-3">
+  <ul class="list-group">
     {% for task in tasks %}
       <li class="list-group-item d-flex align-items-center justify-content-between p-2">
         <div class="d-flex align-items-center">
           <!-- Checkbox on the left -->
-          <div class="form-check me-3">
+
+          <div class="d-flex flex-grow-1 justify-content-between align-items-center">
             <input
               class="form-check-input"
               type="checkbox"
@@ -27,45 +29,49 @@
               {% if task.is_done %}checked{% endif %}
               aria-label="Mark task {{ task.id }} as done"
             >
-          </div>
+          
 
           <!-- Truncated task detail -->
-          <label
+          {% comment %} <label
             for="task-{{ task.id }}"
             class="flex-grow-1 mb-0 task-text"
             style="cursor: pointer;"
             title="{{ task.task_detail }}"
           >
             {{ task.task_detail }}
-          </label>
+          </label> {% endcomment %}
+          <div class="task-text" style="cursor: pointer;">
+            <p class="mb-0 w-100">{{ task.task_detail }}</p>
+          </div>
         </div>
+          
+
         <!-- Tag badge on the right -->
+        <div class="d-flex">
         {% if task.tag_id %}
           <span class="badge bg-secondary">{{ task.tag_id.tag_name }}</span>
         {% endif %}
-      </li>
+        </div>
+      </div>
+    </li>
     {% empty %}
       <li class="list-group-item">
         No tasks found.
       </li>
     {% endfor %}
-  </ul>
+    <form>
+      <div class="d-flex">
+        <div class="flex-grow-1" >
+        <textarea class="form-control rounded-top-0" id="exampleFormControlTextarea1" rows="2"></textarea>
+        </div>
+        <div class="d-flex">
+        <button type="submit" class="btn btn-primary rounded-start-0 rounded-top-0">Submit</button>
+        </div>
+      </div>
+      
+    </form>
+      
 
-  <!-- New-task input area -->
-  <div class="new-task-container">
-    <div class="textarea-wrapper position-relative">
-      <textarea
-        id="new-task-input"
-        class="form-control new-task-textarea"
-        placeholder="Add a new task…"
-        rows="1"
-      ></textarea>
-      <button 
-        id="add-task-btn" 
-        class="btn btn-primary arrow-button position-absolute" 
-        aria-label="Add task">
-        &#8593;
-      </button>
-    </div>
+  </ul>
   </div>
 {% endblock content%}
