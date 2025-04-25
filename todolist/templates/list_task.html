@@ -17,43 +17,31 @@
   <div class="border border-1 rounded-3">
   <ul class="list-group">
     {% for task in tasks %}
-      <li class="list-group-item d-flex align-items-center justify-content-between p-2">
-        <div class="d-flex align-items-center">
-          <!-- Checkbox on the left -->
-
-          <div class="d-flex flex-grow-1 justify-content-between align-items-center">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="task-{{ task.id }}"
-              {% if task.is_done %}checked{% endif %}
-              aria-label="Mark task {{ task.id }} as done"
-            >
-          
-
-          <!-- Truncated task detail -->
-          {% comment %} <label
-            for="task-{{ task.id }}"
-            class="flex-grow-1 mb-0 task-text"
-            style="cursor: pointer;"
-            title="{{ task.task_detail }}"
-          >
-            {{ task.task_detail }}
-          </label> {% endcomment %}
-          <div class="task-text" style="cursor: pointer;">
-            <p class="mb-0 w-100">{{ task.task_detail }}</p>
+      <li class="list-group-item p-0">
+        <div class="d-flex justify-content-between align-items-center ">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="mb-0 border-end border-2 p-3">
+              <input
+                class="form-check-input custom-checkbox"
+                type="checkbox"
+                id="task-{{ task.id }}"
+                {% if task.is_done %}checked{% endif %}
+                aria-label="Mark task {{ task.id }} as done"
+              >
+            </div>
+            <div class="me-2">
+              <p class="ms-3 mb-0 task-text">{{ task.task_detail }}</p>
+            </div>
           </div>
-        </div>
-          
+          <div class="pe-3">
+            {% if task.tag_id %}
+            <span class="badge bg-secondary">{{ task.tag_id.tag_name }}</span>
+            {% endif %}
+          </div>
 
-        <!-- Tag badge on the right -->
-        <div class="d-flex">
-        {% if task.tag_id %}
-          <span class="badge bg-secondary">{{ task.tag_id.tag_name }}</span>
-        {% endif %}
         </div>
-      </div>
-    </li>
+        
+      </li>
     {% empty %}
       <li class="list-group-item">
         No tasks found.

@@ -3,32 +3,10 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    max-height: 20px;
   }
   
-  /* new-task input + button container */
-  .new-task-container {
-    position: relative;
-  }
-
-  /* textarea starts small then grows upward on focus */
-  .new-task-textarea {
-    width: 100%;
-    padding-right: 2.5rem; /* make room for button */
-    resize: none;
-    overflow: hidden;
-    transition: height 0.2s ease;
-    height: 2rem;         /* collapsed */
-  }
-  .new-task-textarea:focus {
-    height: 5rem;         /* expanded */
-  }
-
-  /* arrow button styling */
-  .arrow-button {
-    position: absolute;
-    top: 50%;
-    right: 0.5rem;
-    transform: translateY(-50%);
-    line-height: 1;
-    padding: 0.5rem 0.75rem;
-  }
+.custom-checkbox {
+  width: 20px; /* Set the desired width */
+  height: 20px; /* Set the desired height */
+}
