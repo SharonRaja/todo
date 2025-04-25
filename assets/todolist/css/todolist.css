@@ -1,3 +1,19 @@
 *{
    
 }
+
+.task-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .list-group-item .form-check-input {
+    /* stretch input to full height of its parent */
+    height: 100%;
+    width: auto;      /* keep aspect ratio */
+    margin: 0;        /* remove extra default margins */
+    /* optional: fine-tune visual size */
+    /* transform: scale(1.2); */
+    vertical-align: middle;
+  }

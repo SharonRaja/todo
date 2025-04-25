@@ -1,18 +1,71 @@
 {% extends "layout.html" %}
 {% load static %}
 
-{% block addional_js_cs %}
+{% block additional_js_css %}
 <link rel="stylesheet" href="{% static 'todolist/css/todolist.css' %}">
 <script src="{% static 'todolist/js/todolist.js' %}"></script>
-{% endblock addional_js_cs %}
+{% endblock additional_js_css %}
 
 
 {% block title %}
     Home
 {% endblock %}
 
+
 {% block content %}
-<div class="m-3 bg-success">
- hi
-</div>
-{% endblock %} 
+  <h1>Your Tasks</h1>
+  <ul class="list-group mb-3">
+    {% for task in tasks %}
+      <li class="list-group-item d-flex align-items-center justify-content-between p-2">
+        <div class="d-flex align-items-center">
+          <!-- Checkbox on the left -->
+          <div class="form-check me-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="task-{{ task.id }}"
+              {% if task.is_done %}checked{% endif %}
+              aria-label="Mark task {{ task.id }} as done"
+            >
+          </div>
+
+          <!-- Truncated task detail -->
+          <label
+            for="task-{{ task.id }}"
+            class="flex-grow-1 mb-0 task-text"
+            style="cursor: pointer;"
+            title="{{ task.task_detail }}"
+          >
+            {{ task.task_detail }}
+          </label>
+        </div>
+        <!-- Tag badge on the right -->
+        {% if task.tag_id %}
+          <span class="badge bg-secondary">{{ task.tag_id.tag_name }}</span>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li class="list-group-item">
+        No tasks found.
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- New-task input area -->
+  <div class="new-task-container">
+    <div class="textarea-wrapper position-relative">
+      <textarea
+        id="new-task-input"
+        class="form-control new-task-textarea"
+        placeholder="Add a new task…"
+        rows="1"
+      ></textarea>
+      <button 
+        id="add-task-btn" 
+        class="btn btn-primary arrow-button position-absolute" 
+        aria-label="Add task">
+        &#8593;
+      </button>
+    </div>
+  </div>
+{% endblock content%}
