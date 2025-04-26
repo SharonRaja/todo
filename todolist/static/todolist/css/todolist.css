@@ -3,7 +3,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-height: 20px;
+    max-height: 30px;
   }
   
 .custom-checkbox {
@@ -11,6 +11,7 @@
   height: 2rem; /* Set the desired height */
 
 }
+
 
 
 /* .task-input:active,

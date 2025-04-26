@@ -49,22 +49,25 @@
       </li>
     {% endfor %}
     </div>
-    <form action="{% url 'todolist:add_task' %}" method="POST" class="task-form">
+    <form action="{% url 'todolist:add_task' %}" method="POST">
       {% csrf_token %}
       <div class="d-flex">
         <div class="flex-grow-1" >
-        <textarea class="form-control rounded-top-0 task-input" id="exampleFormControlTextarea1" rows="2"></textarea>
+         {% comment %} <textarea class="form-control rounded-top-0 task-input" id="exampleFormControlTextarea1" rows="2"></textarea>  {% endcomment %}
+         {{ form.task_detail }}
+        </div>
+        <div class="d-flex">
+          {{ form.tag_id }}
         </div>
         <div class="d-flex">
         <button type="submit" class="btn btn-primary rounded-start-0 rounded-top-0">Submit</button>
         </div>
+        
       </div>
       
-    </form>
-      
+    </form>     
 
   </ul>
   </div>
-  <p  class="bg-red">Hilajjsfdlkj;askd</p>
   </div>
 {% endblock content%}

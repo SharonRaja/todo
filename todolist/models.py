@@ -27,4 +27,4 @@ class Task(models.Model):
         managed = False
 
     def __str__(self):
-        return self.task_detail
+        return self.task_detail + ' - ' + str(self.tag_id) + ' - ' + str(self.user_id)
