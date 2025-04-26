@@ -7,12 +7,17 @@
   }
   
 .custom-checkbox {
-  width: 20px; /* Set the desired width */
-  height: 20px; /* Set the desired height */
-  }
+  width: 2rem; /* Set the desired width */
+  height: 2rem; /* Set the desired height */
 
-textarea:active{
-  
-      color: #0000FF;
-    
-  }
+}
+.task-input:active {
+  background-color: red !important;
+  color: aqua !important;
+}
+
+/* Keep existing :active:focus state if needed for combined states */
+.task-input:active:focus {
+  background-color: red !important;
+  color: aqua !important;
+}

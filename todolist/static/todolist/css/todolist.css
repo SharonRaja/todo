@@ -7,6 +7,44 @@
   }
   
 .custom-checkbox {
-  width: 20px; /* Set the desired width */
-  height: 20px; /* Set the desired height */
+  width: 2rem; /* Set the desired width */
+  height: 2rem; /* Set the desired height */
+
+}
+
+
+/* .task-input:active,
+.task-input:focus {
+  z-index: 10 !important;
+  border-top: 2px;
+  
+}
+.task-input:hover{
+  z-index: 10 !important;
+} */
+
+/* Keep existing :active:focus state if needed for combined states */
+/* .task-input:active:focus {
+  background-color: red !important;
+  color: aqua !important;
+} */
+/* .bg-red {
+  background-color: red !important;
+  color: aqua !important;
+} */
+
+.task-list-panel {
+  max-height: 60vh;
+  overflow-y: auto;
+  /* padding-right: 8px; Prevent scrollbar overlap */
+}
+
+/* Optional: Style scrollbar for better visual consistency */
+.task-list-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task-list-panel::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 4px;
 }
