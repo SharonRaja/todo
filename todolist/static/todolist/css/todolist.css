@@ -13,27 +13,6 @@
 }
 
 
-
-/* .task-input:active,
-.task-input:focus {
-  z-index: 10 !important;
-  border-top: 2px;
-  
-}
-.task-input:hover{
-  z-index: 10 !important;
-} */
-
-/* Keep existing :active:focus state if needed for combined states */
-/* .task-input:active:focus {
-  background-color: red !important;
-  color: aqua !important;
-} */
-/* .bg-red {
-  background-color: red !important;
-  color: aqua !important;
-} */
-
 .task-list-panel {
   max-height: 60vh;
   overflow-y: auto;

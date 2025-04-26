@@ -9,5 +9,6 @@ urlpatterns = [
     # path("<slug:post_slug>", views.post_page, name='page')
     path('', views.list_todo, name='list_todo'),
     path("add-task/", views.add_task, name='add_task'),
+    path('task_complete/<int:task_id>/', views.task_complete, name='task_complete'),
     # path("delete-task/<int:task_id>/", views.delete_task, name='delete_task'),
 ]
