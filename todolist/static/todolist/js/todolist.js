@@ -78,7 +78,6 @@ document.getElementById('task-form').addEventListener('submit', function(e) {
                             <input
                                 type="checkbox"
                                 class="form-check-input custom-checkbox"
-                                data-bs-toggle="modal" 
                                 id="task-${data.task.task_id}"
                                 ${data.task.is_done ? 'checked' : ''}
                                 aria-label="Mark task ${data.task.task_id} as done"

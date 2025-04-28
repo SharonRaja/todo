@@ -40,7 +40,7 @@ def add_task(request):
 
                 if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
 
-                    if task.tag:
+                    if hasattr(task, 'tag'):
                         tag_data = {
                             'id': task.tag.id,
                             'tag_name': task.tag.tag_name
