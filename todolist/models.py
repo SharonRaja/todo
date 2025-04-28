@@ -18,8 +18,8 @@ class Task(models.Model):
     task_id = models.AutoField(primary_key=True)
     task_detail = models.CharField(max_length=100)
     is_done = models.BooleanField(default=False)
-    tag_id = models.ForeignKey(Tag, on_delete=models.CASCADE, db_column='tag_id')  # Reference to tag table
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_id')  # Reference to auth_user table
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, db_column='tag_id')  # Reference to tag table
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_id')  # Reference to auth_user table
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -27,4 +27,4 @@ class Task(models.Model):
         managed = False
 
     def __str__(self):
-        return self.task_detail + ' - ' + str(self.tag_id) + ' - ' + str(self.user_id)
+        return f'{self.task_detail}'

@@ -29,19 +29,58 @@ def list_todo(request):
 def add_task(request):
     """ View to add a new task. """
     if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            task = form.save(commit=False)
-            if request.user.is_authenticated:
-                task.user = request.user
-            task.is_done = False
-            
-            # print("Saved task with tag:", task.tag_id)  # Verify tag is attached
-            task.save()
-            # form.save_m2m()
-            return redirect('todolist:list_todo')  # Corrected namespace
+        try:
+            form = TaskForm(request.POST)
+            if form.is_valid():
+                task = form.save(commit=False)
+                if request.user.is_authenticated:
+                    task.user = request.user
+                task.is_done = False
+                task.save()
+
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+
+                    if task.tag:
+                        tag_data = {
+                            'id': task.tag.id,
+                            'tag_name': task.tag.tag_name
+                        }
+
+                    return JsonResponse({
+                        'status': 'success',
+                        'task': {
+                            'task_id': task.task_id,
+                            'task_detail': task.task_detail,
+                            'is_done': task.is_done,
+                            'user': task.user.username if hasattr(task, 'user') else None,
+                            'tag': tag_data if hasattr(task, 'tag')  else None,
+                            'created_at': task.created_at
+                        }
+                    }, status=200)
+                return redirect('todolist:list_todo')  # Corrected namespace
+
+            # Handle invalid form
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'status': 'error',
+                    'errors': form.errors.get_json_data()
+                }, status=400)
+
+        except Exception as e:
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                print(e)
+                return JsonResponse({
+                    'status': 'error',
+                    'message': str(e)
+                }, status=500)
+            # For non-AJAX requests, redirect with error
+            return redirect('todolist:list_todo')
+
+    return JsonResponse({
+        'status': 'error',
+        'message': 'Invalid request method'
+    }, status=400)
     
-    return list_todo(request)
 
 def task_complete(request, task_id):
     

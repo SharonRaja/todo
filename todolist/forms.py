@@ -2,7 +2,7 @@ from django import forms
 from .models import Task, Tag
 
 class TaskForm(forms.ModelForm):
-    tag_id = forms.ModelChoiceField(  # Changed to ModelChoiceField for single selection
+    tag = forms.ModelChoiceField(  # Changed to ModelChoiceField for single selection
         queryset=Tag.objects.all(),
         widget=forms.Select(attrs={
             'class': 'form-select rounded-0 ',
@@ -14,7 +14,7 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ['task_detail', 'tag_id']
+        fields = ['task_detail', 'tag']
         widgets = {
             'task_detail': forms.Textarea(attrs={
                 'class': 'form-control task-input rounded-end-0 rounded-top-0',
