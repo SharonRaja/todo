@@ -4,17 +4,21 @@ from .models import Task, Tag
 from django.contrib.auth.models import User
 from .forms import TaskForm
 from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from .models import Task, Tag
+from .forms import TaskForm
+
+
 # Create your views here.
 def list_todo(request):
+    """View to list all tasks. Along with the form to add a new task."""
     tasks = Task.objects.filter(is_done=False)
     return render(request, "list_task.html", {
         'tasks': tasks,
         'form': TaskForm()  # Add form to context
     })
 
-from django.shortcuts import render, redirect
-from .models import Task, Tag
-from .forms import TaskForm
+
 
 def list_todo(request):
     """View to list all tasks. Along with the form to add a new task."""
@@ -68,7 +72,6 @@ def add_task(request):
 
         except Exception as e:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                print(e)
                 return JsonResponse({
                     'status': 'error',
                     'message': str(e)
@@ -83,8 +86,7 @@ def add_task(request):
     
 
 def task_complete(request, task_id):
-    
-    print(task_id, request.user)
+    """ View to mark a task as complete. """
     if request.method == 'POST':
         try:
             if request.user.is_authenticated:

@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // AJAX to add new task
 document.getElementById('task-form').addEventListener('submit', function(e) {
-    console.log('form sumitted')
+    // console.log('form sumitted')
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -68,7 +68,7 @@ document.getElementById('task-form').addEventListener('submit', function(e) {
             noTasksMessage.remove();
         }
     
-        console.log("Task data :", data.task)
+        // console.log("Task data :", data.task)
         // Create the new task HTML
         const taskHTML = `
             <li class="list-group-item p-0" id="task-item-${data.task.task_id}">
@@ -81,6 +81,8 @@ document.getElementById('task-form').addEventListener('submit', function(e) {
                                 id="task-${data.task.task_id}"
                                 ${data.task.is_done ? 'checked' : ''}
                                 aria-label="Mark task ${data.task.task_id} as done"
+                                data-bs-toggle="tooltip" 
+                                data-bs-title="Check to remove"
                             >
                         </div>
                         <div class="me-2">
